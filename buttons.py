@@ -1,5 +1,9 @@
 from tkinter import Button, W
-import operations
+
+
+# Default variables
+operation = ''
+results = 0
 
 
 # Render  buttons
@@ -35,12 +39,15 @@ def render_button_zero(data, frame):
 # Enter data
 def enter_data(data, value):
 
+    global operation, results
+
     # For numeric values
     if value.isnumeric():
+
         # If there is an on going operation
-        if operations.operation != '':
+        if operation != '':
             data.set(value)
-            operations.operation = ''
+            operation = ''
 
         # There is no on going operation
         else:
@@ -48,5 +55,13 @@ def enter_data(data, value):
 
     # For operation values
     else:
+        # Just doing this for not empty variable
+        operation = 'on-going-operation'
+
+        # Sum operation
         if value == '+':
-            operations.operation = 'sum'
+            # Add value to chain of values
+            results += int(data.get())
+
+        # Show values on screen
+        data.set(results)
