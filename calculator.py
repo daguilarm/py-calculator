@@ -3,7 +3,7 @@ from screen import render_screen
 from keyboard import render_keyboard
 
 
-# Init window
+# Window
 root = Tk()
 root.title("Mac calculator app with Python")
 
@@ -16,7 +16,7 @@ data = StringVar()
 screen = render_screen(data, calculator)
 
 # Buttons
-buttons = render_keyboard(calculator, data)
+buttons = render_keyboard(data, calculator)
 
 # Infinity loop
 root.mainloop()

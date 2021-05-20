@@ -2,7 +2,7 @@ from buttons import render_button, render_button_0
 
 
 # Set the keyboard
-def render_keyboard(calculator, data):
+def render_keyboard(data, frame):
     # Set the list of buttons
     buttons = ['AC', '+/-', '%', '/', '7', '8', '9', 'x', '4', '5', '6', '-', '1', '2', '3', '+', '0', ',', '=']
 
@@ -16,13 +16,13 @@ def render_keyboard(calculator, data):
 
         # Render 0 the button
         if button == '0':
-            render_button_0(calculator, data)
+            render_button_0(data, frame)
             # The 0 button use 2 columns so...
             column += 1
 
         # Render the button
         else:
-            render_button(calculator, button, row, column, data)
+            render_button(data, frame, button, row, column)
 
         # New column
         if column < max_columns:

@@ -2,7 +2,7 @@ from tkinter import Button, W
 
 
 # Render the buttons
-def render_button(frame, text, row, column, data):
+def render_button(data, frame, text, row, column):
 
     button = Button(
         frame,
@@ -16,7 +16,7 @@ def render_button(frame, text, row, column, data):
     return button
 
 
-def render_button_0(frame, data):
+def render_button_0(data, frame):
 
     button = Button(
         frame,
