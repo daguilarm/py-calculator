@@ -12,11 +12,13 @@ calculator = Frame(root)
 calculator.pack()
 
 # Screen
+# Default data to be show in the screen
 data = StringVar()
+# Render the screen with the default data
 screen = render_screen(data, calculator)
 
 # Buttons
 buttons = render_keyboard(data, calculator)
 
-# Infinity loop
+# Infinity loop for the window
 root.mainloop()

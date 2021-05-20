@@ -1,4 +1,4 @@
-from buttons import render_button, render_button_0
+from buttons import *
 
 
 # Set the keyboard
@@ -16,7 +16,7 @@ def render_keyboard(data, frame):
 
         # Render 0 the button
         if button == '0':
-            render_button_0(data, frame)
+            render_button_zero(data, frame)
             # The 0 button use 2 columns so...
             column += 1
 
