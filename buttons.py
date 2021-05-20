@@ -1,8 +1,9 @@
-from tkinter import Button
+from tkinter import Button, W
 
 
 # Render the buttons
 def render_button(frame, text, row, column, data):
+
     button = Button(
         frame,
         text=text,
@@ -14,6 +15,19 @@ def render_button(frame, text, row, column, data):
 
     return button
 
+
+def render_button_0(frame, data):
+
+    button = Button(
+        frame,
+        text='0',
+        width=10,
+        command=lambda: enter_data(data, '0'),
+    )
+
+    button.grid(row=5, column=0, columnspan=2, sticky=W)
+
+    return button
 
 # Enter data
 def enter_data(data, value):
