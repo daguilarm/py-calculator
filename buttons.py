@@ -3,7 +3,7 @@ from tkinter import Button, W
 
 # Default variables
 operation = ''
-results = 0
+isInputNumeric = False
 
 
 # Render  buttons
@@ -39,29 +39,34 @@ def render_button_zero(data, frame):
 # Enter data
 def enter_data(data, value):
 
-    global operation, results
+    global operation, isInputNumeric
+
+    # Update the operation
+    operation += value
+
+    # For results
+    if value == '=':
+
+        data.set(eval(operation[:-1]))
+        operation = data.get()
 
     # For numeric values
-    if value.isnumeric():
+    elif value.isnumeric():
 
-        # If there is an on going operation
-        if operation != '':
-            data.set(value)
-            operation = ''
-
-        # There is no on going operation
-        else:
+        # If the previous value was number
+        if isInputNumeric:
             data.set(data.get() + value)
 
-    # For operation values
+        # If the previous value was a symbol
+        else:
+            data.set(value)
+
+        # Set the value as numeric
+        isInputNumeric = True
+
+    # For operation values, show the current result
     else:
-        # Just doing this for not empty variable
-        operation = 'on-going-operation'
+        data.set(eval(operation[:-1]))
 
-        # Sum operation
-        if value == '+':
-            # Add value to chain of values
-            results += int(data.get())
-
-        # Show values on screen
-        data.set(results)
+        # Set the value as symbol
+        isInputNumeric = False
