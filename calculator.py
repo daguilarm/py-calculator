@@ -1,7 +1,6 @@
 from tkinter import *
-from screen import render_screen
-from keyboard import render_keyboard
-
+from keyboard import render as render_keyboard
+from screen import render as render_screen
 
 # Window
 root = Tk()
@@ -9,6 +8,7 @@ root.title("Mac calculator app with Python")
 
 # Frame
 calculator = Frame(root)
+calculator.configure(background='black')
 calculator.pack()
 
 # Screen

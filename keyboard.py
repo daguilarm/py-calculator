@@ -2,7 +2,7 @@ from buttons import *
 
 
 # Set the keyboard
-def render_keyboard(data, frame):
+def render(data, frame):
     # Set the list of buttons
     buttons = ['AC', '+/-', '%', '/', '7', '8', '9', 'x', '4', '5', '6', '-', '1', '2', '3', '+', '0', ',', '=']
 

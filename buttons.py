@@ -2,21 +2,22 @@ from tkinter import Button, W
 
 
 # Default variables
-operation = ''
-isInputNumeric = False
+operation: str = ''
+isInputNumeric: bool = False
 
 
-# Render  buttons
+# Render numeric  buttons
 def render_button(data, frame, text, row, column):
 
     button = Button(
         frame,
         text=text,
         width=3,
+        height=3,
         command=lambda: enter_data(data, text)
     )
 
-    button.grid(row=row, column=column)
+    button.grid(row=row, column=column, padx=0, pady=0)
 
     return button
 
@@ -28,10 +29,11 @@ def render_button_zero(data, frame):
         frame,
         text='0',
         width=10,
+        height=3,
         command=lambda: enter_data(data, '0'),
     )
 
-    button.grid(row=5, column=0, columnspan=2, sticky=W)
+    button.grid(row=5, column=0, columnspan=2, sticky=W, padx=0, pady=0)
 
     return button
 
@@ -42,31 +44,51 @@ def enter_data(data, value):
     global operation, isInputNumeric
 
     # Update the operation
-    operation += value
+    operation += value.replace('x', '*')
 
-    # For results
+    # Return the results
     if value == '=':
 
-        data.set(eval(operation[:-1]))
+        resolve_operation(data)
         operation = data.get()
 
     # For numeric values
     elif value.isnumeric():
 
-        # If the previous value was number
-        if isInputNumeric:
-            data.set(data.get() + value)
-
-        # If the previous value was a symbol
-        else:
-            data.set(value)
-
-        # Set the value as numeric
-        isInputNumeric = True
+        # Resolve for numeric values
+        resolve_numeric(data, value)
 
     # For operation values, show the current result
     else:
-        data.set(eval(operation[:-1]))
+        resolve_operation(data)
 
         # Set the value as symbol
         isInputNumeric = False
+
+
+# Resolve numeric
+def resolve_numeric(data, value):
+
+    global isInputNumeric
+
+    # If the previous value is a number
+    if isInputNumeric:
+        data.set(data.get() + value)
+
+    # If the previous value is a symbol / operation
+    else:
+        data.set(value)
+
+    # Set the value as numeric
+    isInputNumeric = True
+
+
+# Resolve operation
+def resolve_operation(data):
+    global operation
+
+    # Get the value
+    value = eval(operation[:-1])
+
+    # Resolve the operation value in memory
+    data.set(value);
