@@ -78,7 +78,10 @@ def resolve_numeric(data, value):
 
     # If the previous value is a number
     if isInputNumeric:
-        data.set(data.get() + value)
+        # Fixed number with left 0
+        new_value = (data.get() + value).lstrip('0')
+        # Set the value
+        data.set(new_value)
 
     # If the previous value is a symbol / operation
     else:
@@ -93,7 +96,10 @@ def resolve_operation(data):
     global operation
 
     # Get the value
-    value = eval(operation[:-1])
+    if len(operation[:-1]) > 0:
+        value = eval(operation[:-1])
+    else:
+        value = 0
 
     # Resolve the operation value in memory
     data.set(value);
