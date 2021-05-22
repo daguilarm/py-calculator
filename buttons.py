@@ -61,13 +61,19 @@ def enter_data(data, value):
         # when reset the value with AC
         if not operation == '*(-1)':
             data.set(eval(operation))
+            
         else:
             operation = ''
 
     # Float number
     elif value == '.':
+        # If there is no number to float...
         if data.get().count('.') <= 0:
             data.set(data.get() + value)
+
+        # If the number is already float, delete the point
+        if operation.count('.') > 1:
+            operation = operation[:-1]
 
     # For numeric values
     elif value.isnumeric():
