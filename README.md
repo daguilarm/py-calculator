@@ -9,3 +9,10 @@ Mac.
 Mi primera aproximación seria al lenguaje de programación Python. Una simple calculadora emulando el comportamiento de la calculadora de un ordenador
 Mac.
 
+## Credits
+
+- [Damián Aguilar](https://github.com/daguilarm)
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
