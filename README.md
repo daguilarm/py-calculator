@@ -6,6 +6,6 @@ Mac.
 
 ---
 
-Mi primera aproximación seria al lenguaje de programación Python. Una simple calculadora emulando el comportamiento de la calculadora de 
+Mi primera aproximación seria al lenguaje de programación Python. Una simple calculadora emulando el comportamiento de la calculadora de un ordenador
 Mac.
 
