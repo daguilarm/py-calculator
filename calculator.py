@@ -1,6 +1,5 @@
 from tkinter import *
 from keyboard import render as render_keyboard
-from screens import render_screen
 
 # Window
 root = Tk()
@@ -16,7 +15,10 @@ calculator.pack()
 data = StringVar()
 
 # Screens
-screen = render_screen(data, calculator)
+screen = Entry(calculator, textvariable=data, highlightbackground="#333333", highlightthickness=2, bd=0)
+screen.grid(row=0, column=0, columnspan=4, ipady=14)
+screen.config(background='#333333', fg='#ececec', justify='right', font=('Verdana', 18))
+screen.insert(0, '0')
 
 # Buttons
 buttons = render_keyboard(data, calculator)
