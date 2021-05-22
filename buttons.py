@@ -1,5 +1,4 @@
-from tkinter import Button, W
-
+from tkinter import Button, W, StringVar
 
 # Default variables
 operation: str = ''
@@ -51,6 +50,12 @@ def enter_data(data, value):
 
         resolve_operation(data)
         operation = data.get()
+
+    # Return the results
+    elif value == 'AC':
+
+        operation = ''
+        data.set('0')
 
     # For numeric values
     elif value.isnumeric():

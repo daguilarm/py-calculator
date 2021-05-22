@@ -1,6 +1,6 @@
 from tkinter import *
 from keyboard import render as render_keyboard
-from screen import render as render_screen
+from screens import render_screen
 
 # Window
 root = Tk()
@@ -12,10 +12,10 @@ calculator = Frame(root)
 calculator.configure(background='#333333')
 calculator.pack()
 
-# Screen
-# Default data to be show in the screen
-data = StringVar(root, '0')
-# Render the screen with the default data
+# Default data for the screen
+data = StringVar()
+
+# Screens
 screen = render_screen(data, calculator)
 
 # Buttons
