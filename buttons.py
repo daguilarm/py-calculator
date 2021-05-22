@@ -7,7 +7,6 @@ isInputNumeric: bool = False
 
 # Render numeric  buttons
 def render_button(data, frame, text, row, column):
-
     button = Button(
         frame,
         text=text,
@@ -23,7 +22,6 @@ def render_button(data, frame, text, row, column):
 
 # Render de 0 button. Because has double size
 def render_button_zero(data, frame):
-
     button = Button(
         frame,
         text='0',
@@ -39,11 +37,10 @@ def render_button_zero(data, frame):
 
 # Enter data
 def enter_data(data, value):
-
     global operation, isInputNumeric
 
     # Update the operation
-    operation += value.replace('x', '*')
+    operation += value.replace('x', '*').replace('+/-', '*(-1)')
 
     # Return the results
     if value == '=':
@@ -51,11 +48,26 @@ def enter_data(data, value):
         resolve_operation(data)
         operation = data.get()
 
-    # Return the results
+    # Reset the results
     elif value == 'AC':
 
         operation = ''
         data.set('0')
+        isInputNumeric = False
+
+    # Change positive or negative
+    elif value == '+/-':
+        # Avoid operation to resolve the string *(-1)
+        # when reset the value with AC
+        if not operation == '*(-1)':
+            data.set(eval(operation))
+        else:
+            operation = ''
+
+    # Float number
+    elif value == '.':
+        if data.get().count('.') <= 0:
+            data.set(data.get() + value)
 
     # For numeric values
     elif value.isnumeric():
@@ -73,7 +85,6 @@ def enter_data(data, value):
 
 # Resolve numeric
 def resolve_numeric(data, value):
-
     global isInputNumeric
 
     # If the previous value is a number
@@ -95,9 +106,11 @@ def resolve_numeric(data, value):
 def resolve_operation(data):
     global operation
 
+    filter_operation = operation[:-1]
+
     # Get the value
-    if len(operation[:-1]) > 0:
-        value = eval(operation[:-1])
+    if len(filter_operation) > 0:
+        value = eval(filter_operation)
     else:
         value = 0
 
