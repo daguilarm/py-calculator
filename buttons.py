@@ -61,7 +61,7 @@ def enter_data(data, value):
         # when reset the value with AC
         if not operation == '*(-1)':
             data.set(eval(operation))
-            
+
         else:
             operation = ''
 
@@ -74,6 +74,22 @@ def enter_data(data, value):
         # If the number is already float, delete the point
         if operation.count('.') > 1:
             operation = operation[:-1]
+
+    # Percent
+    elif value == '%':
+
+        # Removed % symbol and divide the value
+        percent = operation[:-1].split('*')
+
+        # Calculate full percent
+        if len(percent) == 2:
+            operation = '100 * {} / {}'.format(percent[0], percent[1])
+
+        # Calculate partial percent
+        else:
+            operation = '{} / 100'.format(percent[0])
+
+        data.set(eval(operation))
 
     # For numeric values
     elif value.isnumeric():
