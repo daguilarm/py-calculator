@@ -20,7 +20,7 @@ def render_button(data, frame, text, row, column):
     return button
 
 
-# Render de 0 button. Because has double size
+# Render the zero button. In this case the button has double size
 def render_button_zero(data, frame):
     button = Button(
         frame,
